@@ -1,6 +1,6 @@
 package com.haha.clients;
 
-import com.haha.clients.base.UserClientBase;
+import com.haha.clients.base.ClientBase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class IntegratedClient extends UserClientBase {
+public class IntegratedClient extends ClientBase {
 
     private JTextArea serverInfoArea;
     private JButton toggleServerButton;
@@ -31,11 +31,11 @@ public class IntegratedClient extends UserClientBase {
     private final ExecutorService threadPool = Executors.newCachedThreadPool();
 
     public IntegratedClient(String username) {
-        super("Integrated Client - " + username.substring(0, 1).toUpperCase() + username.substring(1), 800, 600, username);
+        super("Admin - " + username.substring(0, 1).toUpperCase() + username.substring(1), 800, 600, username);
     }
 
     @Override
-    public void initUI() {
+    protected void intiUI() {
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridBagLayout());
 

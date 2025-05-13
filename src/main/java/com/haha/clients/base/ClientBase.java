@@ -10,7 +10,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public abstract class UserClientBase extends JFrame {
+public abstract class ClientBase extends JFrame {
 
     protected GridBagConstraints gbc = new GridBagConstraints();
     protected JButton toggleCallButton;
@@ -22,46 +22,17 @@ public abstract class UserClientBase extends JFrame {
     protected boolean callActive = false;
     protected String username;
 
-    public UserClientBase(String title, int width, int height, String username) {
+    public ClientBase(String title, int width, int height, String username) {
         this.username = username;
         setTitle(title);
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        initUI();
+        this.intiUI();
     }
 
     // 初始化通用界面
-    protected void initUI() {
-        setLayout(new GridBagLayout());
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        JLabel serverIpLabel = new JLabel("Server IP:");
-        serverIpField = new JTextField("localhost", 20);
-        JLabel serverPortLabel = new JLabel("Server Port:");
-        serverPortField = new JTextField("12345", 20);
-
-        toggleCallButton = new JButton("Start Call");
-        toggleCallButton.addActionListener(e -> toggleCall());
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(serverIpLabel, gbc);
-        gbc.gridx = 1;
-        add(serverIpField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        add(serverPortLabel, gbc);
-        gbc.gridx = 1;
-        add(serverPortField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        add(toggleCallButton, gbc);
-    }
+    protected abstract void intiUI();
 
     protected void toggleCall() {
         if (!callActive) {
@@ -90,7 +61,6 @@ public abstract class UserClientBase extends JFrame {
                 audioCapture.start();
                 audioPlayer.start();
             } catch (IOException | LineUnavailableException e) {
-                e.printStackTrace();
                 SwingUtilities.invokeLater(() -> toggleCallButton.setText("Start Call"));
             }
         }).start();

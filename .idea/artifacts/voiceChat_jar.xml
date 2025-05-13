@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="voiceChat:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/voiceChat_jar</output-path>
+    <root id="archive" name="voiceChat.jar">
+      <element id="module-output" name="voiceChat" />
+    </root>
+  </artifact>
+</component>

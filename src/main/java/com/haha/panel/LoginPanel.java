@@ -84,7 +84,6 @@ public class LoginPanel extends JFrame {
                 }
             }
         } catch (IOException | NullPointerException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error loading user credentials.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
